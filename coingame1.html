@@ -114,7 +114,7 @@ main{flex:1;padding:12px}
 
 <script>
 /* ---------- SET THIS to your deployed backend URL (after deploy) ---------- */
-let API_URL = '{{REPLACE_WITH_BACKEND_URL}}'; // e.g. 'https://my-backend.up.railway.app' or 'http://localhost:3000'
+let API_URL = '{{https://coinprouz.onrender.com}}'; // e.g. 'https://my-backend.up.railway.app' or 'http://localhost:3000'
 
 /* ---------- State & defaults ---------- */
 const KEY = 'clickcoin_telegram_v1';
@@ -278,4 +278,5 @@ function getSkinBonus(){ const s = SKINS.find(x=>x.id===S.skin); return s? s.bon
 renderSkins(); renderGifts(); updateUI();
 </script>
 </body>
+
 </html>
