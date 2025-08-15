@@ -2,26 +2,37 @@
 <html lang="uz">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ClickCoin Pro — Telegram WebApp</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>ClickCoin Pro — Telegram WebApp (Mobile-ready)</title>
+<meta name="theme-color" content="#041026">
 <style>
-:root{--bg:#041026;--card:#0e1630;--muted:#9fb0ff;--accent:#7c5cff}
+:root{
+  --bg:#041026; --card:#0e1630; --muted:#9fb0ff; --accent:#7c5cff;
+  --glass: rgba(255,255,255,0.04);
+}
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, Roboto, Arial, sans-serif;background:linear-gradient(180deg,#02101f,#041026);color:#eaf0ff}
-.app{max-width:980px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:78px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:12px}
-.brand{font-weight:800}
-.pills{display:flex;gap:8px}
-.pill{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:12px}
-main{flex:1;padding:12px}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#02101f,#041026);color:#eaf0ff;-webkit-tap-highlight-color:transparent}
+.app{max-width:980px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:88px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+.brand{font-weight:800;font-size:18px}
+.pills{display:flex;gap:8px;align-items:center}
+.pill{background:var(--glass);padding:8px 12px;border-radius:14px;font-weight:700;color:#fff}
+main{flex:1;padding:12px 16px}
 .screen{display:none}
 .screen.active{display:block}
 .center{display:flex;flex-direction:column;align-items:center;gap:12px}
-.coin-btn{width:min(66vw,360px);aspect-ratio:1/1;border-radius:50%;display:grid;place-items:center;font-size:clamp(36px,10vw,88px);cursor:pointer;border:8px solid rgba(255,255,255,0.04);box-shadow:0 12px 40px rgba(0,0,0,0.5);background:radial-gradient(circle at 30% 30%, #fff7b2, #ffd24d)}
-.energy-bar{width:86%;height:18px;background:#1b2433;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);display:flex}
-.energy-fill{height:100%;background:linear-gradient(90deg,#ffdd55,#7cffb0);transition:width .2s linear}
-.energy-empty{height:100%;background:#2b3347}
-.card{background:rgba(14,22,48,0.95);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-bottom:12px}
+.coin-btn{
+  width:66vw; max-width:420px; aspect-ratio:1/1; border-radius:50%;
+  display:grid;place-items:center;font-size:clamp(36px,10vw,88px);cursor:pointer;
+  border:10px solid rgba(255,255,255,0.04); box-shadow:0 14px 50px rgba(0,0,0,0.6);
+  background: radial-gradient(circle at 25% 25%, #fff7b2, #ffd24d 30%, #ffb84d 60%);
+  -webkit-user-select:none; user-select:none;
+}
+.coin-btn:active{transform:scale(.97)}
+.energy-bar{width:86%;max-width:420px;height:18px;background:#122030;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);display:flex}
+.energy-fill{height:100%;background:linear-gradient(90deg,#ffdd55,#7cffb0);transition:width .25s linear}
+.energy-empty{height:100%;background:#132033}
+.card{background:rgba(14,22,48,0.9);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-bottom:12px}
 .small{font-size:13px;color:var(--muted)}
 .shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(min-width:720px){.shop-grid{grid-template-columns:repeat(3,1fr)}}
@@ -30,12 +41,25 @@ main{flex:1;padding:12px}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.03);color:#e8f0ff}
 .leader{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.04)}
 .input{width:100%;padding:10px;border-radius:8px;border:0;background:#09132a;color:#dfe8ff}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:92px;background:#0f1431;padding:10px 14px;border-radius:10px;display:none}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:92px;background:#081229;padding:10px 14px;border-radius:10px;display:none;z-index:999}
 .badge{background:#0b1430;padding:6px 8px;border-radius:10px;font-weight:800}
 .gift-visual{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;font-weight:900;color:#fff}
 .gift-visual.gold{background:linear-gradient(180deg,#ffd86b,#ffb84d)}
-.bottom-nav{position:fixed;left:0;right:0;bottom:0;height:64px;background:#08132a;display:flex;justify-content:space-around;align-items:center;border-top:1px solid rgba(255,255,255,0.03)}
-.bottom-nav button{background:none;border:0;color:#eaf0ff;font-weight:800;padding:10px;cursor:pointer}
+.bottom-nav{
+  position:fixed;left:0;right:0;bottom:0;height:72px;background:linear-gradient(180deg,#071428,#071a2a);display:flex;justify-content:space-around;align-items:center;border-top:1px solid rgba(255,255,255,0.03);
+  z-index:30;
+}
+.bottom-nav button{background:none;border:0;color:#eaf0ff;font-weight:800;padding:10px 8px;cursor:pointer;font-size:14px}
+.centered-row{display:flex;gap:8px;align-items:center}
+.small-muted{font-size:12px;color:#9fb0ff}
+
+/* Responsive tweaks for very small phones */
+@media(max-width:360px){
+  .coin-btn{width:84vw}
+  .brand{font-size:16px}
+  .pill{padding:6px 8px;font-size:13px}
+  .bottom-nav{height:64px}
+}
 </style>
 </head>
 <body>
@@ -49,10 +73,13 @@ main{flex:1;padding:12px}
   </div>
 
   <main>
+    <!-- HOME -->
     <section id="home" class="screen active">
       <div class="center">
         <div class="small">User: <b id="uiName">-</b></div>
+
         <button id="coinBtn" class="coin-btn" aria-label="tap">🟡</button>
+
         <div style="width:86%;display:flex;flex-direction:column;align-items:center">
           <div class="energy-bar" aria-label="energy">
             <div id="energyFill" class="energy-fill" style="width:100%"></div>
@@ -60,9 +87,15 @@ main{flex:1;padding:12px}
           </div>
           <div class="small" style="margin-top:6px">Energy: <span id="uiEnergyVal">100</span>/<span id="uiMaxEnergy">100</span></div>
         </div>
+
+        <div style="width:86%;display:flex;gap:8px;justify-content:center;margin-top:6px">
+          <button id="openReferral" class="btn ghost">Refer a Friend</button>
+          <button id="openShop" class="btn primary">Open Shop</button>
+        </div>
       </div>
     </section>
 
+    <!-- SHOP -->
     <section id="shop" class="screen">
       <h3>Shop & Skins</h3>
       <div class="card">
@@ -71,20 +104,35 @@ main{flex:1;padding:12px}
           <div style="text-align:right"><div class="badge" id="priceTap">20</div><div style="margin-top:8px"><button id="buyTap" class="btn primary">Buy</button></div></div>
         </div>
       </div>
+
       <div class="card"><h4>Skins (Each skin gives bonuses)</h4><div id="skinsGrid" class="shop-grid"></div></div>
+      <div class="small-muted">Tip: Equip a skin to get tap/energy bonuses.</div>
     </section>
 
+    <!-- FRIENDS -->
     <section id="friends" class="screen">
       <h3>Referral</h3>
-      <div class="card"><div class="small">Referral link (only one):</div><input id="refLink" class="input" readonly /><div style="margin-top:8px"><button id="copyRef" class="btn ghost">Copy Referral</button></div></div>
-      <div class="card"><div class="small">Invited: <b id="uiInvited">0</b></div><div class="small">Referral bonus total: <b id="uiRefTotal">0</b></div></div>
+      <div class="card">
+        <div class="small">Referral link (only one):</div>
+        <input id="refLink" class="input" readonly />
+        <div style="margin-top:8px;display:flex;gap:8px">
+          <button id="copyRef" class="btn ghost">Copy</button>
+          <button id="openBotRef" class="btn primary">Open Bot with My Code</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="small">Invited: <b id="uiInvited">0</b></div>
+        <div class="small">Referral bonus total: <b id="uiRefTotal">0</b></div>
+      </div>
     </section>
 
+    <!-- GIFTBOX -->
     <section id="giftbox" class="screen">
       <h3>Gift Boxes</h3>
       <div id="giftGrid" class="shop-grid"></div>
     </section>
 
+    <!-- LEADERBOARD -->
     <section id="leaderboard" class="screen">
       <h3>🏆 Global Leaderboard</h3>
       <div class="card small">Top players from server</div>
@@ -93,6 +141,7 @@ main{flex:1;padding:12px}
       <div class="small" style="margin-top:8px">Or press <b>P</b> to submit score.</div>
     </section>
 
+    <!-- SETTINGS -->
     <section id="settings" class="screen">
       <h3>Settings</h3>
       <div class="card"><div class="small">Sound: <button id="toggleSound" class="btn ghost">Toggle</button></div><div class="small">Theme: <button id="toggleTheme" class="btn ghost">Toggle</button></div></div>
@@ -100,63 +149,107 @@ main{flex:1;padding:12px}
   </main>
 
   <div class="bottom-nav">
-    <button class="nav-btn" data-screen="home">🏠 Home</button>
-    <button class="nav-btn" data-screen="shop">🛒 Shop</button>
-    <button class="nav-btn" data-screen="friends">👥 Referral</button>
-    <button class="nav-btn" data-screen="giftbox">🎁 Giftbox</button>
-    <button class="nav-btn" data-screen="leaderboard">🏆 Leaderboard</button>
-    <button class="nav-btn" data-screen="settings">⚙️ Settings</button>
+    <button class="nav-btn" data-screen="home">🏠</button>
+    <button class="nav-btn" data-screen="shop">🛒</button>
+    <button class="nav-btn" data-screen="friends">👥</button>
+    <button class="nav-btn" data-screen="giftbox">🎁</button>
+    <button class="nav-btn" data-screen="leaderboard">🏆</button>
+    <button class="nav-btn" data-screen="settings">⚙️</button>
   </div>
-
 </div>
 
 <div id="toast" class="toast"></div>
 
 <script>
-/* ---------- SET THIS to your deployed backend URL (after deploy) ---------- */
-let API_URL = '{{https://coinprouz.onrender.com}}'; // e.g. 'https://my-backend.up.railway.app' or 'http://localhost:3000'
+/* ================= CONFIG ================= */
+/* Replace with your deployed backend URL (Render) once ready.
+   Example: 'https://my-clickcoin.onrender.com' */
+let API_URL = 'https://coinprouz.onrender.com'; // <- you MUST replace this
 
-/* ---------- State & defaults ---------- */
-const KEY = 'clickcoin_telegram_v1';
-function defaultState(){ return { name:null, coins:0, totalEarned:0, perTap:1, tapLevel:0, maxEnergy:100, energy:100, energyRegenPerSec:0.25, boost:{mult:1,until:0}, bots:{level:0,cps:0}, prices:{tap:20,bot:200,boost:150,energyRefill:5000,luckyChest:1000}, skinsOwned:['classic'], skin:'classic', invites:0, refTotal:0, giftLastOpen:{} }; }
+/* ================= State & Defaults ================= */
+const KEY = 'clickcoin_v_final';
+function defaultState(){
+  return {
+    name:null, coins:0, totalEarned:0,
+    perTap:1, tapLevel:0,
+    maxEnergy:100, energy:100, energyRegenPerSec:0.25,
+    boost:{mult:1,until:0}, bots:{level:0,cps:0},
+    prices:{tap:20,bot:200,boost:150,energyRefill:5000,luckyChest:1000},
+    skinsOwned:['classic'], skin:'classic',
+    invites:0, refTotal:0, giftLastOpen:{}
+  };
+}
 let S = loadState();
-function loadState(){ try{ const raw=localStorage.getItem(KEY); return raw?Object.assign(defaultState(), JSON.parse(raw)):defaultState(); }catch(e){ return defaultState(); } }
+function loadState(){ try{ const raw = localStorage.getItem(KEY); return raw?Object.assign(defaultState(), JSON.parse(raw)):defaultState(); }catch(e){ return defaultState(); } }
 function saveState(){ localStorage.setItem(KEY, JSON.stringify(S)); }
 
-/* ---------- UI refs ---------- */
-const ui = { coins: document.getElementById('uiCoins'), energyVal: document.getElementById('uiEnergyVal'), maxEnergy: document.getElementById('uiMaxEnergy'), energyFill: document.getElementById('energyFill'), energyEmpty: document.getElementById('energyEmpty'), coinBtn: document.getElementById('coinBtn'), skinsGrid: document.getElementById('skinsGrid'), giftGrid: document.getElementById('giftGrid'), leaderList: document.getElementById('leaderList'), refLink: document.getElementById('refLink'), copyRef: document.getElementById('copyRef'), uiName: document.getElementById('uiName'), priceTap: document.getElementById('priceTap'), btnSaveScore: document.getElementById('btnSaveScore'), uiInvited: document.getElementById('uiInvited'), uiRefTotal: document.getElementById('uiRefTotal') };
+/* ================= UI refs ================= */
+const ui = {
+  coins: document.getElementById('uiCoins'),
+  energyVal: document.getElementById('uiEnergyVal'),
+  maxEnergy: document.getElementById('uiMaxEnergy'),
+  energyFill: document.getElementById('energyFill'),
+  energyEmpty: document.getElementById('energyEmpty'),
+  coinBtn: document.getElementById('coinBtn'),
+  skinsGrid: document.getElementById('skinsGrid'),
+  giftGrid: document.getElementById('giftGrid'),
+  leaderList: document.getElementById('leaderList'),
+  refLink: document.getElementById('refLink'),
+  copyRef: document.getElementById('copyRef'),
+  openReferral: document.getElementById('openReferral'),
+  openBotRef: document.getElementById('openBotRef'),
+  uiName: document.getElementById('uiName'),
+  priceTap: document.getElementById('priceTap'),
+  btnSaveScore: document.getElementById('btnSaveScore'),
+  uiInvited: document.getElementById('uiInvited'),
+  uiRefTotal: document.getElementById('uiRefTotal')
+};
 
-/* ---------- Helpers ---------- */
+/* ================= Helpers ================= */
 function showToast(msg, t=1400){ const tEl=document.getElementById('toast'); tEl.textContent=msg; tEl.style.display='block'; setTimeout(()=>tEl.style.display='none',t); }
 function fmt(n){ if(n>=1e9) return (n/1e9).toFixed(2)+'B'; if(n>=1e6) return (n/1e6).toFixed(2)+'M'; if(n>=1e3) return (n/1e3).toFixed(2)+'K'; return Math.floor(n).toString(); }
 function nowDayKey(ts=Date.now()){ const d=new Date(ts); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; }
 
-/* ---------- Skins & Giftboxes ---------- */
-const SKINS = [ {id:'classic', name:'Classic', price:0, icon:'◉', color:'#ffd24d', bonus:{tap:1, energy:1}}, {id:'silver',  name:'Silver',  price:5000, icon:'S', color:'#cfd6dc', bonus:{tap:1.1, energy:1}}, {id:'gold',    name:'Gold',    price:25000, icon:'G', color:'#ffd24d', bonus:{tap:1.5, energy:1.5}}, {id:'sapphire',name:'Sapphire',price:100000,icon:'B', color:'#4ac6ff', bonus:{tap:2.0, energy:2}}, {id:'obsidian',name:'Obsidian',price:500000,icon:'●', color:'#2b2b2b', bonus:{tap:3.0, energy:3}} ];
-const GIFTBOXES = [ {id:0,name:'Free Box',price:0,baseMax:5000,rareChance:0.002,daily:true,description:'Kuniga 1 marta — eng katta 5,000 (0.2%)'}, {id:1,name:'Box 2',price:10000,baseMax:10000,rareChance:0.001,rareMax:100000,description:'Max 100,000 (0.1%)'}, {id:2,name:'Box 3',price:50000,baseMax:50000,rareChance:0.001,rareMax:300000,description:'Max 300,000 (0.1%)'}, {id:3,name:'Box 4',price:200000,baseMax:200000,rareChance:0.001,rareMax:1000000,description:'Max 1,000,000 (0.1%)'}, {id:4,name:'Box 5',price:1000000,baseMax:1000000,rareChance:0.001,rareMax:5000000,description:'Max 5,000,000 (0.1%)'}, {id:5,name:'Super Box',price:10000000,baseMax:10000000,superChance:0.0001,superPrize:100000000,description:'Super prize: 100,000,000 (0.01%)'} ];
+/* ================= Skins & Giftboxes (expanded) ================= */
+const SKINS = [
+  {id:'classic', name:'Classic', price:0, icon:'◉', color:'#ffd24d', bonus:{tap:1, energy:1}},
+  {id:'bronze', name:'Bronze', price:2000, icon:'b', color:'#c27a4b', bonus:{tap:1.05, energy:1}},
+  {id:'silver', name:'Silver', price:8000, icon:'S', color:'#cfd6dc', bonus:{tap:1.12, energy:1}},
+  {id:'gold', name:'Gold', price:25000, icon:'G', color:'#ffd24d', bonus:{tap:1.5, energy:1.5}},
+  {id:'platinum', name:'Platinum', price:120000, icon:'P', color:'#c6f3ff', bonus:{tap:1.9, energy:2}},
+  {id:'sapphire', name:'Sapphire', price:350000, icon:'◆', color:'#4ac6ff', bonus:{tap:2.5, energy:2.5}},
+  {id:'emerald', name:'Emerald', price:800000, icon:'♦', color:'#4ff0a0', bonus:{tap:3.2, energy:3}},
+  {id:'obsidian', name:'Obsidian', price:2000000, icon:'●', color:'#2b2b2b', bonus:{tap:4.5, energy:4}},
+  {id:'mythic', name:'Mythic', price:10000000, icon:'✦', color:'#ffd7ff', bonus:{tap:6, energy:5}}
+];
 
-/* ---------- Init: Telegram + referral ---------- */
-(function initAuth(){
+const GIFTBOXES = [
+  {id:0,name:'Free Box',price:0,baseMax:5000,rareChance:0.002,daily:true,description:'Kuniga 1 marta — eng katta 5,000 (0.2%)'},
+  {id:1,name:'Small Box',price:1000,baseMax:2000,rareChance:0.001,description:'Arzon va tez imkoniyat'},
+  {id:2,name:'Big Box',price:10000,baseMax:15000,rareChance:0.001,rareMax:100000,description:'Balandroq mukofotlar'},
+  {id:3,name:'Gold Box',price:50000,baseMax:75000,rareChance:0.0008,rareMax:300000,description:'Qimmatli imkoniyat'},
+  {id:4,name:'Epic Box',price:300000,baseMax:500000,rareChance:0.0005,rareMax:2_000_000,description:'Super imkoniyatlar'},
+  {id:5,name:'Legend Box',price:2_000_000,baseMax:10_000_000,superChance:0.00005,superPrize:100_000_000,description:'Sizni kutmoqda!'}
+];
+
+/* ================= Telegram initData handling ================= */
+let TELEGRAM_INITDATA = null; // raw initData string (signed)
+let TELEGRAM_USER = null;     // user object from initDataUnsafe if present
+
+(function readTelegram(){
   try{
     if(window.Telegram && window.Telegram.WebApp){
-      const user = window.Telegram.WebApp.initDataUnsafe?.user;
-      if(user) S.name = user.username || user.first_name || S.name || ('Guest'+Math.floor(Math.random()*9999));
+      TELEGRAM_INITDATA = window.Telegram.WebApp.initData || window.Telegram.WebApp.initDataRaw || null;
+      TELEGRAM_USER = window.Telegram.WebApp.initDataUnsafe?.user || null;
+      // expand WebApp for full-screen in Telegram app
       try{ window.Telegram.WebApp.expand(); }catch(e){}
     }
   }catch(e){}
-  if(!S.name) S.name = 'Guest'+Math.floor(Math.random()*9999);
-
-  try{
-    const params = new URLSearchParams(location.search);
-    const r = params.get('ref');
-    if(r){
-      fetch(API_URL + '/referral', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ref:r, newUser:S.name}) }).catch(()=>{});
-    }
-  }catch(e){}
+  if(!S.name) S.name = (TELEGRAM_USER && (TELEGRAM_USER.username || TELEGRAM_USER.first_name)) || S.name || ('Guest'+Math.floor(Math.random()*9999));
   saveState();
 })();
 
-/* ---------- UI update ---------- */
+/* ================= UI update ================= */
 function getSkinBonus(){ const s = SKINS.find(x=>x.id===S.skin); return s? s.bonus : {tap:1,energy:1}; }
 function updateUI(){
   ui.coins.textContent = fmt(S.coins);
@@ -173,7 +266,7 @@ function updateUI(){
   saveState();
 }
 
-/* ---------- Click (home) ---------- */
+/* ================= Click logic (home) ================= */
 ui.coinBtn.addEventListener('click', ()=>{
   if(S.energy <= 0){ showToast('Energiya tugadi'); return; }
   const bonus = getSkinBonus();
@@ -186,7 +279,7 @@ ui.coinBtn.addEventListener('click', ()=>{
   updateUI();
 });
 
-/* ---------- Shop actions ---------- */
+/* ================= Shop actions ================= */
 document.getElementById('buyTap').addEventListener('click', ()=>{
   const price = S.prices.tap;
   if(S.coins < price){ showToast("Ko'proq coin kerak"); return; }
@@ -194,7 +287,7 @@ document.getElementById('buyTap').addEventListener('click', ()=>{
   showToast('Tap kuchi oshdi'); updateUI();
 });
 
-/* ---------- Skins rendering ---------- */
+/* ================= Skins rendering & interactions ================= */
 function renderSkins(){
   ui.skinsGrid.innerHTML = '';
   SKINS.forEach(s=>{
@@ -202,7 +295,7 @@ function renderSkins(){
     const div = document.createElement('div'); div.className='card';
     div.innerHTML = `
       <div style="display:flex;align-items:center;gap:10px">
-        <div class="skin-swatch" style="background:linear-gradient(180deg, ${s.color}, ${s.color}); color:#08102a">${s.icon}</div>
+        <div style="width:64px;height:64px;border-radius:12px;display:grid;place-items:center;font-weight:900;background:linear-gradient(180deg, ${s.color}, ${s.color});color:#08102a">${s.icon}</div>
         <div style="flex:1">
           <div style="font-weight:800">${s.name}</div>
           <div class="small">${s.price>0? fmt(s.price)+' coins' : 'Default'}</div>
@@ -228,7 +321,7 @@ function renderSkins(){
   });
 }
 
-/* ---------- Giftboxes ---------- */
+/* ================= Giftboxes rendering & open logic ================= */
 function renderGifts(){
   ui.giftGrid.innerHTML = '';
   GIFTBOXES.forEach(box=>{
@@ -256,28 +349,117 @@ function renderGifts(){
     const id = Number(e.currentTarget.getAttribute('data-open')); openGift(id);
   }));
 }
-function canOpenBox(idx){ const box = GIFTBOXES.find(b=>b.id===idx); if(!box) return false; if(box.daily){ const last = S.giftLastOpen[idx] || 0; return nowDayKey(last) !== nowDayKey(); } else { return S.coins >= box.price; } }
-function openGift(idx){ const box = GIFTBOXES.find(b=>b.id===idx); if(!box) return; if(!canOpenBox(idx)){ showToast('Bu boxni hozir ochib bo‘lmaydi'); return; } if(!box.daily){ if(S.coins < box.price){ showToast('Yetarli coin yo‘q'); return; } S.coins -= box.price; } if(box.superChance && Math.random() < box.superChance){ const prize = box.superPrize || 0; S.coins += prize; S.totalEarned += prize; S.giftLastOpen[idx] = Date.now(); showToast(`🎉 SUPER PRIZE! +${fmt(prize)}`, 2500); updateUI(); return; } if(box.rareChance && Math.random() < box.rareChance){ const rareMax = box.rareMax || box.baseMax; const prize = Math.floor(Math.random() * (rareMax*0.4) + Math.floor(rareMax*0.6)); S.coins += prize; S.totalEarned += prize; S.giftLastOpen[idx] = Date.now(); showToast(`🎉 Lucky! +${fmt(prize)}`,2000); updateUI(); return; } const prize = Math.floor(1 + Math.random() * box.baseMax); S.coins += prize; S.totalEarned += prize; S.giftLastOpen[idx] = Date.now(); showToast(`+${fmt(prize)}`); updateUI(); }
+function canOpenBox(idx){
+  const box = GIFTBOXES.find(b=>b.id===idx); if(!box) return false;
+  if(box.daily){ const last = S.giftLastOpen[idx] || 0; return nowDayKey(last) !== nowDayKey(); } else { return S.coins >= box.price; }
+}
+function openGift(idx){
+  const box = GIFTBOXES.find(b=>b.id===idx); if(!box) return;
+  if(!canOpenBox(idx)){ showToast('Bu boxni hozir ochib bo‘lmaydi'); return; }
+  if(!box.daily){
+    if(S.coins < box.price){ showToast('Yetarli coin yo‘q'); return; }
+    S.coins -= box.price;
+  }
+  if(box.superChance && Math.random() < box.superChance){
+    const prize = box.superPrize || 0; S.coins += prize; S.totalEarned += prize; S.giftLastOpen[idx] = Date.now();
+    showToast(`🎉 SUPER PRIZE! +${fmt(prize)}`, 2500); updateUI(); return;
+  }
+  if(box.rareChance && Math.random() < box.rareChance){
+    const rareMax = box.rareMax || box.baseMax; const prize = Math.floor(Math.random() * (rareMax*0.4) + Math.floor(rareMax*0.6));
+    S.coins += prize; S.totalEarned += prize; S.giftLastOpen[idx] = Date.now();
+    showToast(`🎉 Lucky! +${fmt(prize)}`,2000); updateUI(); return;
+  }
+  const prize = Math.floor(1 + Math.random() * box.baseMax);
+  S.coins += prize; S.totalEarned += prize; S.giftLastOpen[idx] = Date.now();
+  showToast(`+${fmt(prize)}`); updateUI();
+}
 
-/* ---------- Referral copy ---------- */
-ui.copyRef.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(ui.refLink.value); showToast('Referral copied'); }catch(e){ showToast('Copy failed'); } });
+/* ================= Referral flow: open bot with start param ================= */
+const BOT_USERNAME = 'clickcoinprobot'; // <- replace with your bot username WITHOUT @
 
-/* ---------- Leaderboard fetch & submit ---------- */
-async function fetchLeaderboard(){ try{ const res = await fetch(API_URL + '/leaderboard'); if(!res.ok) throw new Error('network'); const data = await res.json(); ui.leaderList.innerHTML = data.map((p,i)=>`<div class="leader"><span>${i+1}. ${p.name}</span><b>${fmt(p.score)}</b></div>`).join(''); }catch(e){ ui.leaderList.innerHTML = '<div class="small">Server bilan bog‘lanib bo‘lmadi.</div>'; } }
-ui.btnSaveScore.addEventListener('click', async ()=>{ try{ ui.btnSaveScore.disabled = true; await fetch(API_URL + '/submit', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name:S.name, score: Math.floor(S.coins)}) }); showToast('Score yuborildi'); fetchLeaderboard(); }catch(e){ showToast('Yuborishda xato'); } finally{ ui.btnSaveScore.disabled = false; } });
+function openTelegramBotWithRef(code){
+  const url = `https://t.me/${BOT_USERNAME}?start=${encodeURIComponent(code)}`;
+  // If running inside Telegram WebApp, prefer openTelegramLink if available
+  try{
+    if(window.Telegram && window.Telegram.WebApp && typeof window.Telegram.WebApp.openTelegramLink === 'function'){
+      window.Telegram.WebApp.openTelegramLink(url);
+      return;
+    }
+  }catch(e){}
+  // fallback to opening new tab
+  window.open(url, '_blank');
+}
 
-/* ---------- Navigation binding ---------- */
-document.querySelectorAll('.nav-btn').forEach(btn=>{ btn.addEventListener('click', ()=>{ const screen = btn.dataset.screen; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(screen).classList.add('active'); if(screen==='shop') renderSkins(); if(screen==='giftbox') renderGifts(); if(screen==='leaderboard') fetchLeaderboard(); }); });
+// UI bindings: referal button opens bot with user's name as code
+ui.openReferral && ui.openReferral.addEventListener('click', ()=> {
+  const code = S.name || ('Guest'+Math.floor(Math.random()*9999));
+  openTelegramBotWithRef(code);
+});
+document.getElementById('openBotRef') && document.getElementById('openBotRef').addEventListener('click', ()=> {
+  const code = S.name || ('Guest'+Math.floor(Math.random()*9999));
+  openTelegramBotWithRef(code);
+});
 
-/* ---------- Keyboard shortcut ---------- */
-document.addEventListener('keydown', e=>{ if(e.key==='p'||e.key==='P'){ ui.btnSaveScore.click(); } });
+// copy referral input
+ui.copyRef.addEventListener('click', async ()=>{
+  try{ await navigator.clipboard.writeText(ui.refLink.value); showToast('Referral copied'); }catch(e){ showToast('Copy failed'); }
+});
 
-/* ---------- Game loop ---------- */
-setInterval(()=>{ if(S.energy < S.maxEnergy) S.energy = Math.min(S.maxEnergy, S.energy + S.energyRegenPerSec * (getSkinBonus().energy)); if(S.bots.cps > 0){ const g = S.bots.cps; S.coins += g; S.totalEarned += g; } if(S.boost && S.boost.until && Date.now() >= S.boost.until){ S.boost = {mult:1,until:0}; showToast('Boost tugadi'); } updateUI(); }, 1000);
-function getSkinBonus(){ const s = SKINS.find(x=>x.id===S.skin); return s? s.bonus : {tap:1,energy:1}; }
+/* ================= Leaderboard fetch & submit ================= */
+async function fetchLeaderboard(){
+  if(!API_URL || API_URL === 'https://coinprouz.onrender.com'){ ui.leaderList.innerHTML = '<div class="small">Backend URL not set. Set API_URL in index.html</div>'; return; }
+  try{
+    const res = await fetch(API_URL + '/leaderboard');
+    if(!res.ok) throw new Error('network');
+    const data = await res.json();
+    ui.leaderList.innerHTML = data.map((p,i)=>`<div class="leader"><span>${i+1}. ${escapeHtml(p.name)}</span><b>${fmt(p.score)}</b></div>`).join('');
+  }catch(e){ ui.leaderList.innerHTML = '<div class="small">Server bilan bog‘lanib bo‘lmadi.</div>'; }
+}
+function clampScore(n){
+  const x = Number(n); if(!Number.isFinite(x) || x<0) return 0; return Math.min(Math.floor(x), 9_223_372_036);
+}
+async function submitScore(){
+  if(!API_URL || API_URL === 'https://coinprouz.onrender.com'){ showToast('Server manzili o\'rnatilmagan'); return; }
+  try{
+    ui.btnSaveScore.disabled = true;
+    const payload = { name: S.name, score: clampScore(S.coins) };
+    if(TELEGRAM_INITDATA) payload.initData = TELEGRAM_INITDATA;
+    await fetch(API_URL + '/submit', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    showToast('Score yuborildi');
+    fetchLeaderboard();
+  }catch(e){ showToast('Yuborishda xato'); } finally { ui.btnSaveScore.disabled = false; }
+}
+ui.btnSaveScore.addEventListener('click', submitScore);
+
+/* ================= Navigation binding ================= */
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const screen = btn.dataset.screen;
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(screen).classList.add('active');
+    if(screen === 'shop') renderSkins();
+    if(screen === 'giftbox') renderGifts();
+    if(screen === 'leaderboard') fetchLeaderboard();
+  });
+});
+
+// keyboard shortcut (P)
+document.addEventListener('keydown', e=>{ if(e.key==='p' || e.key==='P') submitScore(); });
+
+/* ================= Utilities ================= */
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ================= Init ================= */
 renderSkins(); renderGifts(); updateUI();
+
+/* energy regen and background loop */
+setInterval(()=>{
+  if(S.energy < S.maxEnergy) S.energy = Math.min(S.maxEnergy, S.energy + S.energyRegenPerSec * (getSkinBonus().energy));
+  if(S.bots.cps > 0){ const g = S.bots.cps; S.coins += g; S.totalEarned += g; }
+  if(S.boost && S.boost.until && Date.now() >= S.boost.until){ S.boost = {mult:1,until:0}; showToast('Boost tugadi'); }
+  updateUI();
+}, 1000);
+
 </script>
 </body>
-
 </html>
-
